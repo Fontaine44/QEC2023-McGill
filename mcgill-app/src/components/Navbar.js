@@ -1,11 +1,16 @@
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import logo from '../logo.png';
+
 
 const NavBar = () => {
  return (
   <Navbar bg="light" expand="lg">
     <Container className="ms-0">
-      <Navbar.Brand>McGill</Navbar.Brand>
+      <div>
+        <img className="navbar-logo pe-3" src={logo} alt="Logo" />
+        <Navbar.Brand>McGill</Navbar.Brand>
+      </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -16,7 +21,7 @@ const NavBar = () => {
             <Nav.Link>Page 2</Nav.Link>
           </LinkContainer>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <LinkContainer to="/home">
+            <LinkContainer to="/">
              <NavDropdown.Item>Home</NavDropdown.Item>
             </LinkContainer>
             <LinkContainer to="/page2">
