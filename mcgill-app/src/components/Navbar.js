@@ -7,7 +7,7 @@ const NavBar = () => {
  return (
   <Navbar bg="light" expand="lg">
     <Container className="ms-0">
-      <div>
+      <div className="d-flex align-items-center">
         <img className="navbar-logo pe-3" src={logo} alt="Logo" />
         <Navbar.Brand>McGill</Navbar.Brand>
       </div>
