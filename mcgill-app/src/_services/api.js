@@ -1,4 +1,4 @@
-const baseURL = "http://127.0.0.1:5000/"
+const baseURL = "http://3.22.17.77:3000/"
 
 export const apiPOST = async (endpoint, body) => {
     try{
