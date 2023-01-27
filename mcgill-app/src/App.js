@@ -24,14 +24,14 @@ function App() {
       <NavBar />
       <div className="app-container">
       <Routes>
-
-        <Route path="/" element={
-            <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={null}>
+      <Route path="*" element={< Login />}/>
+      <Route path="/home" element={
+          <Suspense fallback={<Login />}>
+              <RolesAuthRoute role={null}>
                     <Home />
-                </RolesAuthRoute>
-            </Suspense>
-            } />
+              </RolesAuthRoute>
+          </Suspense>
+          } />
         <Route path="/users" element={
             <Suspense fallback={<Login />}>
                 <RolesAuthRoute role={"ORGANIZER"}>
@@ -105,7 +105,7 @@ export function RolesAuthRoute({ children, role }) {
 export function Login() {
   return (
     <div className="w-50">
-        <h1>Login</h1>
+        <h3>Login</h3>
         <Form onSubmit={login}>
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Username</Form.Label>
@@ -138,7 +138,7 @@ export async function login(event) {
     localStorage.setItem("logged", true)
     localStorage.setItem("user", JSON.stringify(response.data))
     setRole(response.data.type);
-    window.location.href = '/'
+    window.location.href = '/home'
   } else {
     alert("Wrong username or password. Please try again.");
   }
