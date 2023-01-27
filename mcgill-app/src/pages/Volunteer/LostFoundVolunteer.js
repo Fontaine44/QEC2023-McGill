@@ -20,6 +20,7 @@ function LostFoundVolunteer (){
       })
     };
     fetch('http://3.22.17.77:3000/objects/create', requestOptions)
+    e.target.reset();
   }
     
 

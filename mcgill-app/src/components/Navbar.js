@@ -65,7 +65,7 @@ const NavBar = () => {
         </Nav>
       </Navbar.Collapse>}
       <Navbar.Text className='pe-3'>
-        {localStorage.getItem("logged")=="true" ?  "Welcome " + JSON.parse(localStorage.getItem('user')).firstname: null}
+        {localStorage.getItem("logged")=="true" ?  "Welcome " + JSON.parse(localStorage.getItem('user')).firstname + " (" + localStorage.getItem('role') + ")": null}
         </Navbar.Text>
       {localStorage.getItem("logged") == 'true' ? <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button> : null}
 

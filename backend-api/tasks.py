@@ -9,6 +9,8 @@ def create_task(data):
     return True
 
 def get_tasks(data):
+    if data["role"] == "ORGANIZER":
+        return get_all_tasks()
     query = {"userId": data["id"]}
     return database.database_find(query, "tasks")
     
