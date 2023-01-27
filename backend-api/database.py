@@ -33,3 +33,12 @@ def insert(new_value, col):
         mycol = mydb[col]
 
         mycol.insert_one(new_value)
+
+
+def delete(query, col):
+    with pymongo.MongoClient(conn_str) as client:
+
+        mydb = client["cqi_db"]
+        mycol = mydb[col]
+
+        mycol.delete_one(query)

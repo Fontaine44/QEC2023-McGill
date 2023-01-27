@@ -102,7 +102,7 @@ def create_task():
 @app.route('/tasks/update', methods=["POST"])
 def update_task():
     data = json.loads(request.data)
-    payload = tasks.update_task(data)
+    payload = tasks.update_task(data["old"], data["new"])
     return jsonify(payload)
 
 # Delete a task
@@ -110,4 +110,10 @@ def update_task():
 def delete_task():
     data = json.loads(request.data)
     payload = tasks.delete_task(data)
+    return jsonify(payload)
+
+# Get all tasks
+@app.route('/tasks', methods=["GET"])
+def get_tasks():
+    payload = tasks.get_tasks()
     return jsonify(payload)
