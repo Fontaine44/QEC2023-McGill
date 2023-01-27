@@ -10,9 +10,12 @@ def get_found():
 
 
 def create_object(data):
-    mydict = {"name": data["name"],"description": data["description"],"find_hour": data["find_hour"],"type": data["type"]}
+    if data["type"] == "FOUND":
+        mydict = {"name": data["name"],"description": data["description"],"lost_hour": data["lost_hour"],"type": data["type"]}
+    else:
+        mydict = {"name": data["name"],"description": data["description"],"find_hour": data["find_hour"],"type": data["type"]}
     database.insert(mydict, "objects")
 
 def delete_object(data):
-    query = {"name": data["name"], "description": data["description"],"find_hour": data["find_hour"],"type": data["type"]}
+    query = {"name": data["name"], "description": data["description"],"type": data["type"]}
     database.delete(query, "objects")
