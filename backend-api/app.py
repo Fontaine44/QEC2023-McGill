@@ -111,3 +111,9 @@ def delete_task():
     data = json.loads(request.data)
     payload = tasks.delete_task(data)
     return jsonify(payload)
+
+# Get all tasks
+@app.route('/tasks', methods=["GET"])
+def get_tasks():
+    payload = problems.get_tasks()
+    return jsonify(payload)
