@@ -1,43 +1,57 @@
-import React from 'react'
+import React, {useState} from 'react';
 const LostFoundOrganizer = () => {
   const [formStatus, setFormStatus] = React.useState('Send')
   const onSubmit = (e) => {
     e.preventDefault()
     setFormStatus('Submitting...')
-    const { name, email, telephone, message } = e.target.elements
+    const {name, description, datefound, datelost} = e.target.elements
     let conFom = {
       name: name.value,
-      email: email.value,
-      telephone: telephone.value,
-      message: message.value,
+      description: description.value,
+      datefound: datefound.value,
+      datelost: datelost.value,
     }
     console.log(conFom)
+    
+  }
+  const [isChecked, setIsChecked] = useState(false);
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
   }
   return (
     <div className="container mt-5">
       <h2 className="mb-3">Lost and Found</h2>
       <form onSubmit={onSubmit}>
+        <div className="mb-3" onChange={handleOnChange}>
+          <label className="form-label" htmlFor="name">
+            Do you want to log a lost or found item?
+          </label>
+          <div className="lost-found">
+            <input type="radio" value="Lost" name="gender" /> Lost
+            <input type="radio" value="Found" name="gender" /> Found
+          </div> 
+        </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
-            Name
+            Name of the event
           </label>
           <input className="form-control" type="text" id="name" required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            Email
+          <label className="form-label" htmlFor="description">
+            Description
           </label>
-          <input className="form-control" type="email" id="email" required />
+          <textarea className="form-control" id="description" required />
         </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="telephone">
-            Telephone
+        <div className="mb-3" onChange={handleOnChange}>
+          <label className="form-label" htmlFor="message">  
+            Date the Item was Found          
           </label>
-          <textarea className="form-control" id="telephone" required />
+          <textarea className="form-control" id="message" required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3" >
           <label className="form-label" htmlFor="message">
-            Message
+            Date the Item was Lost
           </label>
           <textarea className="form-control" id="message" required />
         </div>
