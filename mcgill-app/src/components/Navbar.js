@@ -8,11 +8,11 @@ const NavBar = () => {
  const logged = localStorage.getItem("logged")
 
  return role === "VOLUNTEER" ?
-<Navbar bg="light" expand="lg">
+<Navbar className="nav-color" expand="lg">
     <Container className="ms-0">
       <div className="d-flex align-items-center">
         <img className="navbar-logo pe-3" src={logo} alt="Logo" />
-        <Navbar.Brand>McGill</Navbar.Brand>
+        <Navbar.Brand><b>EVENTASK</b></Navbar.Brand>
       </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       { logged === "true" &&
@@ -37,11 +37,11 @@ const NavBar = () => {
     </Container>
   </Navbar>
   :
-<Navbar bg="light" expand="lg">
+<Navbar className="nav-color" expand="lg">
     <Container className="ms-0">
       <div className="d-flex align-items-center">
         <img className="navbar-logo pe-3" src={logo} alt="Logo" />
-        <Navbar.Brand>McGill</Navbar.Brand>
+        <Navbar.Brand><b>EVENTASK</b></Navbar.Brand>
       </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       { logged === "true" &&

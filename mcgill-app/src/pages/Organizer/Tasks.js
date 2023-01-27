@@ -114,7 +114,7 @@ const Tasks = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.example.com/options')
+    fetch('http://localhost:5000/tasks')
       .then(response => response.json())
       .then(data => setUsers(data));
   }, []);
@@ -136,7 +136,7 @@ const Tasks = () => {
             {contacts.map((contact) => (
               <Fragment>
                 {editContactId === contact.id ? (
-                  <EditableRow
+                  <EditableRow 
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
                     handleCancelClick={handleCancelClick}
@@ -153,11 +153,11 @@ const Tasks = () => {
           </tbody>
         </table>
       </form>
-
-      <h2>Add a Task</h2>
+        <div class="border-task">    
+      <h3 className="pt-3">Add a Task</h3>
       <form onSubmit={handleAddFormSubmit}>
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="text"
           name="taskName"
           required="required"
@@ -165,7 +165,7 @@ const Tasks = () => {
           onChange={handleAddFormChange}
         />
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="text"
           name="description"
           required="required"
@@ -173,7 +173,7 @@ const Tasks = () => {
           onChange={handleAddFormChange}
         />
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="text"
           name="date"
           required="required"
@@ -182,7 +182,7 @@ const Tasks = () => {
           onChange={handleAddFormChange}
         />
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="text"
           name="startTime"
           required="required"
@@ -191,7 +191,7 @@ const Tasks = () => {
           onChange={handleAddFormChange}
         />
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="text"
           name="endTime"
           required="required"
@@ -203,13 +203,14 @@ const Tasks = () => {
           isMulti
           name="users"
           options={users}
-          className="basic-multi-select"
+          className="basic-multi-select mb-2"
           placeholder="Select the Volunteers Needed"
           classNamePrefix="select"
         />
         <button className="btn btn-danger" type="submit">Add</button>
         
       </form>
+      </div> 
     </div>
   );
 };
