@@ -21,3 +21,13 @@
   height: auto;
   width: 75px;
 }
+
+.border-task {
+  margin-top: 1rem;
+  padding: 0.5em;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.nav-color {
+  background-color: #f5f0f0;
+}

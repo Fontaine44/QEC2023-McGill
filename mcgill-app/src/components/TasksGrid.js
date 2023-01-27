@@ -33,6 +33,8 @@ const TasksGrid = () => {
 
 // Example load data from sever
 useEffect(() => {
+  console.log(localStorage.getItem("user"))
+  while (localStorage.getItem("user")===null) {
   const body = {
     "id": JSON.parse(localStorage.getItem("user")).id
   }
@@ -45,7 +47,7 @@ useEffect(() => {
     body: JSON.stringify(body)
     })
   .then(result => result.json())
-  .then(rowData => setRowData(rowData))
+  .then(rowData => setRowData(rowData))}
 }, []);
 
 const onFirstDataRendered = useCallback((params) => {

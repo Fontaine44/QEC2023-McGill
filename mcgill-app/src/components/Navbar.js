@@ -8,17 +8,17 @@ const NavBar = () => {
  const logged = localStorage.getItem("logged")
 
  return role === "VOLUNTEER" ?
-<Navbar bg="light" expand="lg">
+<Navbar className="nav-color" expand="lg">
     <Container className="ms-0">
       <div className="d-flex align-items-center">
         <img className="navbar-logo pe-3" src={logo} alt="Logo" />
-        <Navbar.Brand>McGill</Navbar.Brand>
+        <Navbar.Brand><b>EVENTASK</b></Navbar.Brand>
       </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       { logged === "true" &&
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <LinkContainer to="/">
+          <LinkContainer to="/home">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/report-problems">
@@ -29,25 +29,25 @@ const NavBar = () => {
           </LinkContainer>
         </Nav>
         <Navbar.Text className='pe-3'>
-            {/* Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).get("firstname"): null} */}
+            {localStorage.getItem("logged")=="true" ? "Welcome " + JSON.parse(localStorage.getItem('user')).firstname: null}
          </Navbar.Text>
-        <button type="button" className="btn btn-dark" onClick={logOut}>Log out</button>
+         {localStorage.getItem("logged") == 'true' ? <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button> : null}
       </Navbar.Collapse>}
       
     </Container>
   </Navbar>
   :
-<Navbar bg="light" expand="lg">
+<Navbar className="nav-color" expand="lg">
     <Container className="ms-0">
       <div className="d-flex align-items-center">
         <img className="navbar-logo pe-3" src={logo} alt="Logo" />
-        <Navbar.Brand>McGill</Navbar.Brand>
+        <Navbar.Brand><b>EVENTASK</b></Navbar.Brand>
       </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       { logged === "true" &&
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <LinkContainer to="/">
+          <LinkContainer to="/home">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/users">
@@ -65,9 +65,9 @@ const NavBar = () => {
         </Nav>
       </Navbar.Collapse>}
       <Navbar.Text className='pe-3'>
-           {/* Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).get("firstname"): null} */}
+        {localStorage.getItem("logged")=="true" ?  "Welcome " + JSON.parse(localStorage.getItem('user')).firstname: null}
         </Navbar.Text>
-      <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button>
+      {localStorage.getItem("logged") == 'true' ? <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button> : null}
 
     </Container>
   </Navbar>
@@ -79,7 +79,6 @@ export default NavBar;
 
 
 export function logOut() {
-  console.log('here')
   localStorage.setItem("logged", false)
   localStorage.setItem("role", null);
   localStorage.setItem("user", null)
