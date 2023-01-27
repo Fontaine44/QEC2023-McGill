@@ -1,7 +1,7 @@
 import React from 'react';
   
-function Home (){
-  return <h1>Welcome!</h1>
+function HomeOrganizer (){
+  return <h1>Home for Organizers</h1>
 }
   
-export default Home;
+export default HomeOrganizer;

@@ -23,6 +23,12 @@ const NavBar = () => {
           <LinkContainer to="/volunteers">
             <Nav.Link>Volunteers</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/report-problems">
+            <Nav.Link>Report Problems</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/lost-found-org">
+            <Nav.Link>Lost & Found</Nav.Link>
+          </LinkContainer>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <LinkContainer to="/">
              <NavDropdown.Item>Home</NavDropdown.Item>
@@ -32,6 +38,12 @@ const NavBar = () => {
             </LinkContainer>
             <LinkContainer to="/volunteers">
              <NavDropdown.Item>Volunteers</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/report-problems">
+             <NavDropdown.Item>Report Problems</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/lost-found-org">
+             <NavDropdown.Item>Lost & Found</NavDropdown.Item>
             </LinkContainer>
           </NavDropdown>
         </Nav>
