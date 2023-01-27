@@ -9,7 +9,7 @@ def create_task(data):
     return True
 
 def update_task(data, new_data):
-    database.update(data, new_data, "tasks")
+    database.update(data, { "$set": new_data}, "tasks")
 
 
 def delete_task(data):

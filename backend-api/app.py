@@ -33,9 +33,9 @@ def set_password():
 @app.route('/users/create', methods=["POST"])
 def create_user():
     data = json.loads(request.data)
-    status, payload = users.create_user(data)
+    status = users.create_user(data)
     if status:
-        return jsonify(payload)
+        return "success", 200
     else:
         return "Already exists", 400
 
@@ -64,9 +64,9 @@ def get_found():
 @app.route('/objects/create', methods=["POST"])
 def create_object():
     data = json.loads(request.data)
-    status, payload = objs.create_object(data)
+    status = objs.create_object(data)
     if status:
-        return jsonify(payload)
+        return "success", 200
     else:
         return "Already exists", 400
 
@@ -84,9 +84,9 @@ def delete_object():
 @app.route('/problems/create', methods=["POST"])
 def create_problem():
     data = json.loads(request.data)
-    payload = problems.create_problem(data)
+    status = problems.create_problem(data)
     if status:
-        return jsonify(payload)
+        return "success", 200
     else:
         return "Already exists", 400
 
@@ -104,9 +104,9 @@ def get_problems():
 @app.route('/tasks/create', methods=["POST"])
 def create_task():
     data = json.loads(request.data)
-    payload = tasks.create_task(data)
+    status = tasks.create_task(data)
     if status:
-        return jsonify(payload)
+        return "success", 200
     else:
         return "Already exists", 400
 

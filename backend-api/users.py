@@ -14,7 +14,7 @@ def login(data):
             
 def set_password(data):
     filter = {"id": data["id"]}
-    newvalues = {"$set": { "password": data["password"] }}
+    newvalues = {"$set": data}
     database.update(filter, newvalues, "users")
     
 def create_user(data):
