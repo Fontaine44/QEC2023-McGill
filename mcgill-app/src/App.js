@@ -2,16 +2,13 @@ import './App.css';
 import React, { Suspense, useRef } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home'
-import Page2 from './pages/Page2'
 import NavBar from './components/Navbar'
-import NavBarOrganizer from './components/NavbarOrganizer'
 import ReportProblems from './pages/ReportProblems'
 //ORGANIZER
-import HomeOrganizer from './pages/Organizer/HomeOrganizer'
 import LostFoundOrganizer from './pages/Organizer/LostFoundOrganizer'
-import VolunteersAccount from './pages/Organizer/VolunteersAccount'
+import Users from './pages/Organizer/Users'
+import Tasks from './pages/Organizer/Tasks'
 //VOLUNTEERS
-import HomeVolunteer from './pages/Volunteer/HomeVolunteer'
 import LostFoundVolunteer from './pages/Volunteer/LostFoundVolunteer'
 
 import { apiPOST } from './_services/api';
@@ -30,46 +27,48 @@ function App() {
 
         <Route path="/" element={
             <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"VOLUNTEER"}>
-                    <Page2 />
+                <RolesAuthRoute role={null}>
+                    <Home />
                 </RolesAuthRoute>
             </Suspense>
             } />
-        <Route path="/page2" element={
+        <Route path="/users" element={
             <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"VOLUNTEER"}>
-                    <Page2 />
+                <RolesAuthRoute role={"ORGANIZER"}>
+                    <Users />
                 </RolesAuthRoute>
             </Suspense>
             } />
-        <Route path="/volunteers" element={
+            <Route path="/tasks" element={
             <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"VOLUNTEER"}>
-                    <VolunteersAccount />
+                <RolesAuthRoute role={"ORGANIZER"}>
+                    <Tasks />
                 </RolesAuthRoute>
             </Suspense>
             } />
         <Route path="/report-problems" element={
             <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"VOLUNTEER"}>
+                <RolesAuthRoute role={null}>
                     <ReportProblems />
                 </RolesAuthRoute>
             </Suspense>
             } />
         <Route path="/lost-found-org" element={
             <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"VOLUNTEER"}>
+                <RolesAuthRoute role={"ORGANIZER"}>
                     <LostFoundOrganizer />
                 </RolesAuthRoute>
             </Suspense>
             } />
+        <Route path="/lost-found-vol" element={
+            <Suspense fallback={<Login />}>
+                <RolesAuthRoute role={"VOLUNTEER"}>
+                    <LostFoundVolunteer />
+                </RolesAuthRoute>
+            </Suspense>
+            } />
 
-        {/* <Route path='/' element={< HomeOrganizer />}></Route> */}
         <Route path='/login' element={< Login />}></Route>
-        {/* <Route path='/page2' element={< Page2 />}></Route>
-        <Route path='/volunteers' element={< VolunteersAccount/>}></Route>
-        <Route path='/report-problems' element={< ReportProblems/>}></Route>
-        <Route path='/lost-found-org' element={< LostFoundOrganizer/>}></Route> */}
       </Routes>
       </div>
     </div>
@@ -88,7 +87,7 @@ export function RolesAuthRoute({ children, role }) {
     return (<Navigate to="/login" />);
   }
 
-  if (userRole === role) {
+  if (userRole === role || role == null) {
     return (
       <>
           {children}
@@ -139,8 +138,7 @@ export async function login(event) {
     localStorage.setItem("logged", true)
     setRole(response.data.type);
     window.location.href = '/'
-  }
-
+  } 
 
 }
 

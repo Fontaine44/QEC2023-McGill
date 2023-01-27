@@ -21,30 +21,12 @@ const NavBar = () => {
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/volunteers">
-            <Nav.Link>Volunteers</Nav.Link>
-          </LinkContainer>
           <LinkContainer to="/report-problems">
             <Nav.Link>Report Problems</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/lost-found-org">
+          <LinkContainer to="/lost-found-vol">
             <Nav.Link>Lost & Found</Nav.Link>
           </LinkContainer>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <LinkContainer to="/">
-             <NavDropdown.Item>Home</NavDropdown.Item>
-            </LinkContainer>
-
-            <LinkContainer to="/volunteers">
-             <NavDropdown.Item>Volunteers</NavDropdown.Item>
-            </LinkContainer>
-            <LinkContainer to="/report-problems">
-             <NavDropdown.Item>Report Problems</NavDropdown.Item>
-            </LinkContainer>
-            <LinkContainer to="/lost-found-org">
-             <NavDropdown.Item>Lost & Found</NavDropdown.Item>
-            </LinkContainer>
-          </NavDropdown>
         </Nav>
       </Navbar.Collapse>}
       <button type="button" className="btn btn-dark" onClick={logOut}>Log out</button>
@@ -64,13 +46,16 @@ const NavBar = () => {
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/page2">
-            <Nav.Link>Page 2</Nav.Link>
+          <LinkContainer to="/users">
+            <Nav.Link>Create Users</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/tasks">
+            <Nav.Link>All Tasks</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/report-problems">
             <Nav.Link>Report Problems</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/lost-found-vol">
+          <LinkContainer to="/lost-found-org">
             <Nav.Link>Lost & Found</Nav.Link>
           </LinkContainer>
         </Nav>
