@@ -14,19 +14,13 @@ const LostFoundOrganizer = () => {
     }
     console.log(conFom)
   }
-  const options = [
-    {value: "Organiser", label: "organiser"},
-    {value: "Volunteer", label: "volunteer"},
-    {value: "Security", label: "security"},
-    {value: "First Aids", label: "firstaids"}
-  ]
   return (
     <div className="container mt-5">
       <h2 className="mb-3">Report Problems</h2>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
-            Name
+            Name of the Problem
           </label>
           <input className="form-control" type="text" id="name" required />
         </div>
@@ -43,14 +37,23 @@ const LostFoundOrganizer = () => {
           <label className="form-label" htmlFor="type">
             Type of Assistance
           </label>
-          <input className="form-control" type="text" id="type" required />
+          <select className="form-control" required>
+            <option value="organizer">Organizer</option>
+            <option value="volunteer">Volunteer</option>
+            <option selected value="security">Security</option>
+            <option value="firstaids">First Aids</option>
+          </select>
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="level">
-            Level of Emergency
+            Level of Emergency (1 is most important, 4 is least important)
+          <select className="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option selected value="3">3</option>
+            <option value="4">4</option>
+          </select>
           </label>
-          
-          <input className="form-control" type="text" id="level" required />
         </div>
         <button className="btn btn-danger" type="submit">
           {formStatus}
