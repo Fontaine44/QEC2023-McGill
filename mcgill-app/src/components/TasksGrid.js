@@ -13,8 +13,9 @@ const TasksGrid = () => {
 
  // Each Column Definition results in one Column.
  const [columnDefs, setColumnDefs] = useState([
-   {field: 'name', filter: true},
+   {field: 'name', filter: true, minWidth: 150},
    {field: 'description', minWidth: 200},
+   {field: 'userId', headerName:"username"},
    {field: 'date'},
    {field: 'startTime'},
    {field: 'endTime'}
