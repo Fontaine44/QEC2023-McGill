@@ -30,3 +30,28 @@ export const apiPOST = async (endpoint, body) => {
             //
         }
  };
+
+
+ export const apiGET = async (endpoint) => {
+    try{
+        const res = await fetch(baseURL+endpoint, {
+            method: 'GET',})
+
+        if (res.ok) {
+            const data = await res.json()
+            return {
+                data: data,
+                success: true
+            }
+        } else {
+            return {
+                data: null,
+                success: false
+            }
+        }
+
+        }
+        catch (e) {
+            //
+        }
+ };

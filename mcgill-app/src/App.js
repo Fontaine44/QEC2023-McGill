@@ -136,6 +136,7 @@ export async function login(event) {
 
   if (response.success) {
     localStorage.setItem("logged", true)
+    localStorage.setItem("user", JSON.stringify(response.data))
     setRole(response.data.type);
     window.location.href = '/'
   } else {

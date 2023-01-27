@@ -28,8 +28,12 @@ const NavBar = () => {
             <Nav.Link>Lost & Found</Nav.Link>
           </LinkContainer>
         </Nav>
+        <Navbar.Text className='pe-3'>
+            Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).firstname: null}
+         </Navbar.Text>
+        <button type="button" className="btn btn-dark" onClick={logOut}>Log out</button>
       </Navbar.Collapse>}
-      <button type="button" className="btn btn-dark" onClick={logOut}>Log out</button>
+      
     </Container>
   </Navbar>
   :
@@ -60,7 +64,11 @@ const NavBar = () => {
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>}
+      <Navbar.Text className='pe-3'>
+           Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).firstname: null}
+        </Navbar.Text>
       <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button>
+
     </Container>
   </Navbar>
 
@@ -74,5 +82,6 @@ export function logOut() {
   console.log('here')
   localStorage.setItem("logged", false)
   localStorage.setItem("role", null);
+  localStorage.setItem("user", null)
   window.location.href = '/login'
 }
