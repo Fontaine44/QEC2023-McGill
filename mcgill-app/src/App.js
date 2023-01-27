@@ -138,7 +138,9 @@ export async function login(event) {
     localStorage.setItem("logged", true)
     setRole(response.data.type);
     window.location.href = '/'
-  } 
+  } else {
+    alert("Wrong username or password. Please try again.");
+  }
 
 }
 

@@ -10,7 +10,7 @@ export const apiPOST = async (endpoint, body) => {
             },
             body: JSON.stringify(body)
         })
-        console.log(res)
+
         if (res.ok) {
             const data = await res.json()
             return {
