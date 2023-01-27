@@ -15,7 +15,7 @@ const LostFoundOrganizer = () => {
   }
   return (
     <div className="container mt-5">
-      <h2 className="mb-3">Contact Us</h2>
+      <h2 className="mb-3">Lost and Found</h2>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">

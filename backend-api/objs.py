@@ -2,16 +2,15 @@ import database
 
 
 def get_lost():
-    pass
+    return database.database_find({"type": "LOST"}, "objects")
 
 
 def get_found():
-    pass
+    return database.database_find({"type": "FOUND"}, "objects")
 
 
-def create_object():
-    pass
+def create_object(data):
+    database.insert(data, "objects")
 
-
-def delete_object():
-    pass
+def delete_object(data):
+    database.delete(data, "objects")

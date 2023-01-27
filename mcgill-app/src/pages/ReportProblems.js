@@ -1,34 +1,37 @@
 import React from 'react'
+import {useState} from "react"
 //import Dropdown from "./Dropdown";
 const LostFoundOrganizer = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [assistance_type, setType] = useState('');
+  const [priority, setPrio] = useState('');
   const [formStatus, setFormStatus] = React.useState('Send')
-  const onSubmit = (e) => {
-    e.preventDefault()
-    setFormStatus('Submitting...')
-    const { name, type, description, level} = e.target.elements
-    let conFom = {
-      name: name.value,
-      type: type.value,
-      description: description.value,
-      level: level.value,
-    }
-    console.log(conFom)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( {
+        name,
+        description,
+        assistance_type,
+        priority
+      })
+    };
+    fetch('http://127.0.0.1:5000/problems/create', requestOptions)
   }
-  const options = [
-    {value: "Organiser", label: "organiser"},
-    {value: "Volunteer", label: "volunteer"},
-    {value: "Security", label: "security"},
-    {value: "First Aids", label: "firstaids"}
-  ]
+    
+
   return (
     <div className="container mt-5">
       <h2 className="mb-3">Report Problems</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
-            Name
+            Name of the Problem
           </label>
-          <input className="form-control" type="text" id="name" required />
+          <input className="form-control" type="text" required value={name} onChange={(e)=> setName(e.target.value)} />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="description">
@@ -37,20 +40,31 @@ const LostFoundOrganizer = () => {
           <p>
             Optional: Add person to contact and their phone number/email
           </p>
-          <textarea className="form-control" id="description" required />
+          <textarea className="form-control" id="description" required value={description} onChange={(e)=> setDescription(e.target.value)}/>
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="type">
+          <label className="form-label" htmlFor="assistance_type">
             Type of Assistance
           </label>
-          <input className="form-control" type="text" id="type" required />
+          <select className="form-control" required value={assistance_type} onChange={(e)=> setType(e.target.value)}>
+            <option selected value="">Select an option</option>
+            <option value="organizer">Organizer</option>
+            <option value="volunteer">Volunteer</option>
+            <option value="security">Security</option>
+            <option value="firstaids">First Aids</option>
+          </select>
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="level">
-            Level of Emergency
+          <label className="form-label" htmlFor="priority">
+            Level of Emergency (1 is most important, 4 is least important)
+          <select className="form-control" required value={priority} onChange={(e)=> setPrio(e.target.value)}>
+            <option selected value="">Select an option</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
           </label>
-          
-          <input className="form-control" type="text" id="level" required />
         </div>
         <button className="btn btn-danger" type="submit">
           {formStatus}
