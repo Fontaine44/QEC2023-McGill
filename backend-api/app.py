@@ -136,3 +136,9 @@ def get_tasks():
     data = json.loads(request.data)
     payload = tasks.get_tasks(data)
     return jsonify(payload)
+
+# Get all tasks
+@app.route('/tasks/all', methods=["GET"])
+def get_all_tasks():
+    payload = tasks.get_all_tasks()
+    return jsonify(payload)

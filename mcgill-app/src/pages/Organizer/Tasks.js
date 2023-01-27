@@ -1,168 +1,44 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
-import data from "../../mock-data.json";
-import ReadOnlyRow from "../../components/ReadOnlyRow.js";
-import EditableRow from "../../components/EditableRow";
-import Select from 'react-select';
-
-const Tasks = () => {
-  const [contacts, setContacts] = useState(data);
-  const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
-  });
-
-  const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
-  });
-
-  const [editContactId, setEditContactId] = useState(null);
-
-  const handleAddFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...addFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setAddFormData(newFormData);
-  };
-
-  const handleEditFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...editFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setEditFormData(newFormData);
-  };
-
-  const handleAddFormSubmit = (event) => {
-    event.preventDefault();
-
-    const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
-      email: addFormData.email,
+import React, {useState} from 'react';
+import TaskGrid from '../../components/TaskGrid.js'
+const Tasks2 = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [userId, setUserId] = useState('');
+  const [formStatus, setFormStatus] = React.useState('Submit')
+  const handleAddFormSubmit = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( {
+        name,
+        description,
+        date,
+        startTime,
+        endTime,
+        userId
+      })
     };
-
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
-  };
-
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
-
-    const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
-      email: editFormData.email,
-    };
-
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
-
-    newContacts[index] = editedContact;
-
-    setContacts(newContacts);
-    setEditContactId(null);
-  };
-
-  const handleEditClick = (event, contact) => {
-    event.preventDefault();
-    setEditContactId(contact.id);
-
-    const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
-      email: contact.email,
-    };
-
-    setEditFormData(formValues);
-  };
-
-  const handleCancelClick = () => {
-    setEditContactId(null);
-  };
-
-  const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
-  };
-
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch('https://api.example.com/options')
-      .then(response => response.json())
-      .then(data => setUsers(data));
-  }, []);
+    fetch('http://127.0.0.1:5000/tasks/create', requestOptions)
+  }
+    
 
   return (
-    <div className="app-container">
-      <form onSubmit={handleEditFormSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
-                  <EditableRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadOnlyRow
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
-      </form>
-
-      <h2>Add a Task</h2>
+    <div className="container h-100 mt-5">
+    <div class="row h-100">
+    <div class="col-5 ">
+    <h2>Add a Task</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           className="form-control"
           type="text"
-          name="taskName"
+          name="name"
           required="required"
           placeholder="Enter a Task Name..."
-          onChange={handleAddFormChange}
+          onChange={(e)=> setName(e.target.value)}
         />
         <input
           className="form-control"
@@ -170,7 +46,7 @@ const Tasks = () => {
           name="description"
           required="required"
           placeholder="Enter a Description of the Task..."
-          onChange={handleAddFormChange}
+          onChange={(e)=> setDescription(e.target.value)}
         />
         <input
           className="form-control"
@@ -179,7 +55,7 @@ const Tasks = () => {
           required="required"
           pattern= "([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))"
           placeholder="Enter Date of the Task (YYYY-MM-DD)..."
-          onChange={handleAddFormChange}
+          onChange={(e)=> setDate(e.target.value)}
         />
         <input
           className="form-control"
@@ -188,7 +64,7 @@ const Tasks = () => {
           required="required"
           pattern= "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
           placeholder="Enter the Start Time (HH:MM)..."
-          onChange={handleAddFormChange}
+          onChange={(e)=> setStartTime(e.target.value)}
         />
         <input
           className="form-control"
@@ -197,21 +73,25 @@ const Tasks = () => {
           required="required"
           pattern= "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
           placeholder="Enter the End Time (HH:MM)..."
-          onChange={handleAddFormChange}
+          onChange={(e)=> setEndTime(e.target.value)}
         />
-        <Select
-          isMulti
-          name="users"
-          options={users}
-          className="basic-multi-select"
-          placeholder="Select the Volunteers Needed"
-          classNamePrefix="select"
+        <input
+          className="form-control"
+          type="text"
+          name="userId"
+          required="required"
+          placeholder="Enter a valid userId"
+          onChange={(e)=> setUserId(e.target.value)}
         />
         <button className="btn btn-danger" type="submit">Add</button>
         
       </form>
+      </div>
+      <div class="col-7 h-100">
+      <TaskGrid />
+      </div>
+      </div>
     </div>
-  );
-};
-
-export default Tasks;
+  )
+}
+export default Tasks2

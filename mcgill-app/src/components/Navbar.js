@@ -54,7 +54,7 @@ const NavBar = () => {
             <Nav.Link>Create Users</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/tasks">
-            <Nav.Link>All Tasks</Nav.Link>
+            <Nav.Link>Add Tasks</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/report-problems">
             <Nav.Link>Report Problems</Nav.Link>

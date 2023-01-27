@@ -19,3 +19,6 @@ def update_task(data, new_data):
 
 def delete_task(data):
     database.delete(data, "tasks")
+    
+def get_all_tasks():
+    return database.database_find({}, "tasks")

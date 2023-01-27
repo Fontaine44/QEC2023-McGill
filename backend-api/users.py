@@ -46,6 +46,13 @@ def create_user(data):
     return True
     
 def get_users():
-    return database.database_find({}, "users")
+    list =  database.database_find({}, "users")
+    new = {}
+    for user in list:
+        new["name"]= user["firstname"]+' '+user["lastname"]
+        new.append(name)
+    return new
+    
+        
     
 
