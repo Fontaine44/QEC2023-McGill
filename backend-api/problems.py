@@ -1,4 +1,5 @@
-import database
+import database, users
+from twilio.rest import Client
 
 
 def create_problem(data):
@@ -6,6 +7,25 @@ def create_problem(data):
     if len(list)>0:
         return False
     database.insert(data, "reports")
+    if data["priority"] == 1:
+        account_sid = "AC7ea49dde3a5ccc0beecd02dc51ffebad"
+        auth_token = "d3b4afe1425bb4aeb9aaec8953215d2b"
+        client = Client(account_sid, auth_token)
+        list = users.get_users()
+        for user in list:
+            message = client.messages.create(
+            body=data["name"],
+            from_="+15644647446",
+            to=user["phone"]
+            )
+            message.sid
+            message = client.messages.create(
+            body=data["description"],
+            from_="+15644647446",
+            to=user["phone"]
+            )
+            message.sid
+            
     return True
 
 
