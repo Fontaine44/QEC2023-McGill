@@ -18,7 +18,7 @@ def set_password(data):
     database.update(filter, newvalues, "users")
     
 def create_user(data):
-    mydict = {"id": data["id"], "password": data["password"], "firstname": data["firstname"], "lastname": data["lastname"], "age": data["age"], "firstlogin": True, "type": data["type"]}
+    mydict = {"id": data["id"], "password": data["password"], "firstname": data["firstname"], "lastname": data["lastname"], "age": data["age"], "firstlogin": True, "type": data["type"], "phone": data["phone"]}
     database.insert(mydict, "users")
     
 def get_users():
