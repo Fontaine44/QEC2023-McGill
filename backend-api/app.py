@@ -33,8 +33,11 @@ def set_password():
 @app.route('/users/create', methods=["POST"])
 def create_user():
     data = json.loads(request.data)
-    payload = users.create_user(data)
-    return jsonify(payload)
+    status = users.create_user(data)
+    if status:
+        return "success", 200
+    else:
+        return "Already exists", 400
 
 # Get all users
 @app.route('/users', methods=["GET"])
@@ -61,8 +64,11 @@ def get_found():
 @app.route('/objects/create', methods=["POST"])
 def create_object():
     data = json.loads(request.data)
-    payload = objs.create_object(data)
-    return jsonify(payload)
+    status = objs.create_object(data)
+    if status:
+        return "success", 200
+    else:
+        return "Already exists", 400
 
 # Delete an object
 @app.route('/objects/delete', methods=["POST"])
@@ -78,8 +84,11 @@ def delete_object():
 @app.route('/problems/create', methods=["POST"])
 def create_problem():
     data = json.loads(request.data)
-    payload = problems.create_problem(data)
-    return jsonify(payload)
+    status = problems.create_problem(data)
+    if status:
+        return "success", 200
+    else:
+        return "Already exists", 400
 
 # Get all problems
 @app.route('/problems', methods=["GET"])
@@ -95,14 +104,17 @@ def get_problems():
 @app.route('/tasks/create', methods=["POST"])
 def create_task():
     data = json.loads(request.data)
-    payload = tasks.create_task(data)
-    return jsonify(payload)
+    status = tasks.create_task(data)
+    if status:
+        return "success", 200
+    else:
+        return "Already exists", 400
 
 # Update a task
 @app.route('/tasks/update', methods=["POST"])
 def update_task():
     data = json.loads(request.data)
-    payload = tasks.update_task(data)
+    payload = tasks.update_task(data["old"], data["new"])
     return jsonify(payload)
 
 # Delete a task
@@ -110,4 +122,10 @@ def update_task():
 def delete_task():
     data = json.loads(request.data)
     payload = tasks.delete_task(data)
+    return jsonify(payload)
+
+# Get all tasks
+@app.route('/tasks', methods=["GET"])
+def get_tasks():
+    payload = tasks.get_tasks()
     return jsonify(payload)
