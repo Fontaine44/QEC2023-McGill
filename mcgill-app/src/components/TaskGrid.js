@@ -29,7 +29,7 @@ const TaskGrid = () => {
 
 // Example load data from sever
 useEffect(() => {
-  fetch('http://127.0.0.1:5000/users', {
+  fetch('http://3.22.17.77:3000/users', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',

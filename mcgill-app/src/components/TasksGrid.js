@@ -38,7 +38,7 @@ useEffect(() => {
   const body = {
     "id": JSON.parse(localStorage.getItem("user")).id
   }
-  fetch('http://127.0.0.1:5000/tasks', {
+  fetch('http://3.22.17.77:3000/tasks', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',

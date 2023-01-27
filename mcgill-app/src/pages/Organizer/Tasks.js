@@ -22,7 +22,7 @@ const Tasks2 = () => {
         userId
       })
     };
-    fetch('http://127.0.0.1:5000/tasks/create', requestOptions)
+    fetch('http://3.22.17.77:3000/tasks/create', requestOptions)
   }
     
 

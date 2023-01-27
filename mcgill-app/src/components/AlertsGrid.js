@@ -47,7 +47,7 @@ useEffect(() => {
   const body = {
     "id": JSON.parse(localStorage.getItem("user")).id
   }
-  fetch('http://127.0.0.1:5000/problems')
+  fetch('http://3.22.17.77:3000/problems')
   .then(result => result.json())
   .then(rowData => setRowData(rowData))
 }, []);

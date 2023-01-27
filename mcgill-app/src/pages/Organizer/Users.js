@@ -21,7 +21,7 @@ function Users (){
         type
       })
     };
-    fetch('http://127.0.0.1:5000/users/create', requestOptions)
+    fetch('http://3.22.17.77:3000/users/create', requestOptions)
   }
     
 
