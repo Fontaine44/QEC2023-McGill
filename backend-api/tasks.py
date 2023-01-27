@@ -2,15 +2,15 @@ import database
 
 
 def create_task(data):
-    mydict = {"name": data["name"], "description": data["description"],"date": data["date"],"startTime": data["endTime"],"userId": data["userId"]}
-    database.insert(mydict, "tasks")
+    list = database.database_find(data, "tasks")
+    if len(list)>0:
+        return False
+    database.insert(data, "tasks")
+    return True
 
 def update_task(data, new_data):
-    filter = {"name": data["name"], "description": data["description"],"date": data["date"],"startTime": data["endTime"],"userId": data["userId"]}
-    newvalue = {"$set": {"name": new_data["name"], "description": new_data["description"],"date": new_data["date"],"startTime": new_data["endTime"],"userId": new_data["userId"]}}
-    database.update(filter, newvalue, "tasks")
+    database.update(data, new_data, "tasks")
 
 
 def delete_task(data):
-    query = {"name": data["name"], "description": data["description"],"date": data["date"],"startTime": data["endTime"],"userId": data["userId"]}
-    database.delete(query, "tasks")
+    database.delete(data, "tasks")

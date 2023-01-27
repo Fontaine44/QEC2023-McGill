@@ -18,8 +18,11 @@ def set_password(data):
     database.update(filter, newvalues, "users")
     
 def create_user(data):
-    mydict = {"id": data["id"], "password": data["password"], "firstname": data["firstname"], "lastname": data["lastname"], "age": data["age"], "firstlogin": True, "type": data["type"], "phone": data["phone"]}
-    database.insert(mydict, "users")
+    list = database.database_find(data, "users")
+    if len(list)>0:
+        return False
+    database.insert(data, "users")
+    return True
     
 def get_users():
     return database.database_find({}, "users")
