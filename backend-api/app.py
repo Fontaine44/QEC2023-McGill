@@ -60,6 +60,12 @@ def get_found():
     payload = objs.get_found()
     return jsonify(payload)
 
+# Get all objects
+@app.route('/objects/all', methods=["GET"])
+def get_all_objs():
+    payload = objs.get_all()
+    return jsonify(payload)
+
 # Create an object
 @app.route('/objects/create', methods=["POST"])
 def create_object():

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import LFGrid from '../../components/LFGrid';
 const LostFoundOrganizer = () => {
   const [type, setType] = useState('');
   const [name, setName] = useState('');
@@ -22,9 +23,9 @@ const LostFoundOrganizer = () => {
     
 
   return (
-    <div className="container mt-5">
-    <div class="row">
-    <div class="column">
+    <div className="container h-100 mt-5">
+    <div class="row h-100">
+    <div class="col-5 ">
       <h2 className="mb-3">Lost And Found</h2>
       <form onSubmit={handleSubmit}>
       <div className="mb-3">
@@ -60,8 +61,8 @@ const LostFoundOrganizer = () => {
         </button>
       </form>
       </div>
-      <div class="column">
-        
+      <div class="col-7 h-100">
+      <LFGrid />
       </div>
       </div>
     </div>
