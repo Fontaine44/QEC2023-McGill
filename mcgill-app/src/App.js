@@ -25,48 +25,48 @@ function App() {
       <div className="app-container">
       <Routes>
       <Route path="*" element={< Login />}/>
-      <Route path="/home" element={
-          <Suspense fallback={<Login />}>
+      <Route path="/home" element={< Home />}/>
+          {/* <Suspense fallback={<Login />}>
               <RolesAuthRoute role={null}>
                     <Home />
               </RolesAuthRoute>
           </Suspense>
-          } />
-        <Route path="/users" element={
-            <Suspense fallback={<Login />}>
+          } /> */}
+        <Route path="/users" element={<Users/>}/>
+            {/* <Suspense fallback={<Login />}>
                 <RolesAuthRoute role={"ORGANIZER"}>
                     <Users />
                 </RolesAuthRoute>
             </Suspense>
-            } />
-            <Route path="/tasks" element={
-            <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"ORGANIZER"}>
-                    <Tasks />
-                </RolesAuthRoute>
-            </Suspense>
-            } />
-        <Route path="/report-problems" element={
-            <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={null}>
-                    <ReportProblems />
-                </RolesAuthRoute>
-            </Suspense>
-            } />
-        <Route path="/lost-found-org" element={
-            <Suspense fallback={<Login />}>
-                <RolesAuthRoute role={"ORGANIZER"}>
-                    <LostFoundOrganizer />
-                </RolesAuthRoute>
-            </Suspense>
-            } />
-        <Route path="/lost-found-vol" element={
-            <Suspense fallback={<Login />}>
+            } /> */}
+            <Route path="/tasks" element={<Tasks/>}/>
+            {/* // <Suspense fallback={<Login />}>
+            //     <RolesAuthRoute role={"ORGANIZER"}>
+            //         <Tasks />
+            //     </RolesAuthRoute>
+            // </Suspense>
+            //} /> */}
+        <Route path="/report-problems" element={<ReportProblems/>}/>
+            {/* // <Suspense fallback={<Login />}>
+            //     <RolesAuthRoute role={null}>
+            //         <ReportProblems />
+            //     </RolesAuthRoute>
+            // </Suspense>
+            // } /> */}
+        <Route path="/lost-found-org" element={<LostFoundOrganizer />}/>
+            {/* // <Suspense fallback={<Login />}>
+            //     <RolesAuthRoute role={"ORGANIZER"}>
+            //         <LostFoundOrganizer />
+            //     </RolesAuthRoute>
+            // </Suspense>
+            // } /> */}
+        <Route path="/lost-found-vol" element={<LostFoundVolunteer />}/>
+            {/* <Suspense fallback={<Login />}>
                 <RolesAuthRoute role={"VOLUNTEER"}>
                     <LostFoundVolunteer />
                 </RolesAuthRoute>
             </Suspense>
-            } />
+            } /> */}
 
         <Route path='/login' element={< Login />}></Route>
       </Routes>
