@@ -4,6 +4,7 @@ import data from "../../mock-data.json";
 import ReadOnlyRow from "../../components/ReadOnlyRow.js";
 import EditableRow from "../../components/EditableRow";
 import Select from 'react-select';
+
 const Tasks = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({

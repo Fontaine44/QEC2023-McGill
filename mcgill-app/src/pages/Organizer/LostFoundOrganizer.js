@@ -1,64 +1,69 @@
 import React, {useState} from 'react';
 const LostFoundOrganizer = () => {
-  const [formStatus, setFormStatus] = React.useState('Send')
-  const onSubmit = (e) => {
-    e.preventDefault()
-    setFormStatus('Submitting...')
-    const {name, description, datefound, datelost} = e.target.elements
-    let conFom = {
-      name: name.value,
-      description: description.value,
-      datefound: datefound.value,
-      datelost: datelost.value,
-    }
-    console.log(conFom)
+  const [type, setType] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [find_hour, setHour] = useState('');
+  const [formStatus, setFormStatus] = React.useState('Submit')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( {
+        name,
+        description,
+        find_hour,
+        type
+      })
+    };
+    fetch('http://127.0.0.1:5000/objects/create', requestOptions)
+  }
     
-  }
-  const [isChecked, setIsChecked] = useState(false);
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  }
+
   return (
     <div className="container mt-5">
-      <h2 className="mb-3">Lost and Found</h2>
-      <form onSubmit={onSubmit}>
-        <div className="mb-3" onChange={handleOnChange}>
-          <label className="form-label" htmlFor="name">
-            Do you want to log a lost or found item?
+    <div class="row">
+    <div class="column">
+      <h2 className="mb-3">Lost And Found</h2>
+      <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+          <label className="form-label" htmlFor="type">
+            Object Lost or Found
+          <select className="form-control" required value={type} onChange={(e)=> setType(e.target.value)}>
+            <option selected value="">Select an option</option>
+            <option value="LOST">Lost</option>
+            <option value="FOUND">Found</option>
+          </select>
           </label>
-          <div className="lost-found">
-            <input type="radio" value="Lost" name="gender" /> Lost
-            <input type="radio" value="Found" name="gender" /> Found
-          </div> 
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
-            Name of the event
+            Object Name
           </label>
-          <input className="form-control" type="text" id="name" required />
+          <input className="form-control" required value={name} onChange={(e)=> setName(e.target.value)}/>
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="description">
+          <label className="form-label" htmlFor="name">
             Description
           </label>
-          <textarea className="form-control" id="description" required />
+          <input className="form-control" type="text" required value={description} onChange={(e)=> setDescription(e.target.value)} />
         </div>
-        <div className="mb-3" onChange={handleOnChange}>
-          <label className="form-label" htmlFor="message">  
-            Date the Item was Found          
+        <div className="mb-3">
+          <label className="form-label" htmlFor="name">
+            Time
           </label>
-          <textarea className="form-control" id="message" required />
-        </div>
-        <div className="mb-3" >
-          <label className="form-label" htmlFor="message">
-            Date the Item was Lost
-          </label>
-          <textarea className="form-control" id="message" required />
+          <input className="form-control" type="text" required placeholder='HH:MM' pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" value={find_hour} onChange={(e)=> setHour(e.target.value)} />
         </div>
         <button className="btn btn-danger" type="submit">
           {formStatus}
         </button>
       </form>
+      </div>
+      <div class="column">
+        
+      </div>
+      </div>
     </div>
   )
 }
