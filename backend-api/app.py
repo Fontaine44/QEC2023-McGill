@@ -102,7 +102,7 @@ def create_task():
 @app.route('/tasks/update', methods=["POST"])
 def update_task():
     data = json.loads(request.data)
-    payload = tasks.update_task(data)
+    payload = tasks.update_task(data["old"], data["new"])
     return jsonify(payload)
 
 # Delete a task
