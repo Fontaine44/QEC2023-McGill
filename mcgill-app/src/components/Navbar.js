@@ -29,7 +29,7 @@ const NavBar = () => {
           </LinkContainer>
         </Nav>
         <Navbar.Text className='pe-3'>
-            Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).firstname: null}
+            {/* Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).get("firstname"): null} */}
          </Navbar.Text>
         <button type="button" className="btn btn-dark" onClick={logOut}>Log out</button>
       </Navbar.Collapse>}
@@ -65,7 +65,7 @@ const NavBar = () => {
         </Nav>
       </Navbar.Collapse>}
       <Navbar.Text className='pe-3'>
-           Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).firstname: null}
+           {/* Welcome {localStorage.getItem("logged")=="true" ? JSON.parse(localStorage.getItem('user')).get("firstname"): null} */}
         </Navbar.Text>
       <button type="button" className="btn btn-dark justify-content-end" onClick={logOut}>Log out</button>
 
