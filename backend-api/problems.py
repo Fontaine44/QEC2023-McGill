@@ -2,7 +2,7 @@ import database
 
 
 def create_problem(data):
-    mydict = {"name": data["name"],"description": data["description"],"assistance_type": data["assistance_type"]}
+    database.insert(data, "reports")
 
 
 def get_problems():
