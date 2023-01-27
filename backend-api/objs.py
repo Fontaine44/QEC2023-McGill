@@ -14,3 +14,6 @@ def create_object(data):
 
 def delete_object(data):
     database.delete(data, "objects")
+    
+def get_all():
+    return database.database_find({}, "objects")
