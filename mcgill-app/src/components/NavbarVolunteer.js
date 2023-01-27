@@ -20,8 +20,11 @@ const NavBar = () => {
           <LinkContainer to="/page2">
             <Nav.Link>Page 2</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/volunteers">
-            <Nav.Link>Volunteers</Nav.Link>
+          <LinkContainer to="/report-problems">
+            <Nav.Link>Report Problems</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/lost-found-vol">
+            <Nav.Link>Lost & Found</Nav.Link>
           </LinkContainer>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <LinkContainer to="/">
@@ -30,8 +33,11 @@ const NavBar = () => {
             <LinkContainer to="/page2">
              <NavDropdown.Item>Page 2</NavDropdown.Item>
             </LinkContainer>
-            <LinkContainer to="/volunteers">
-             <NavDropdown.Item>Volunteers</NavDropdown.Item>
+            <LinkContainer to="/report-problems">
+             <NavDropdown.Item>Report Problems</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/lost-found-vol">
+             <NavDropdown.Item>Lost & Found</NavDropdown.Item>
             </LinkContainer>
           </NavDropdown>
         </Nav>
