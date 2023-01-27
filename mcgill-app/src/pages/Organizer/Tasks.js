@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import data from "../../mock-data.json";
 import ReadOnlyRow from "../../components/ReadOnlyRow.js";
 import EditableRow from "../../components/EditableRow";
-
+import Select from 'react-select';
 const Tasks = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
@@ -110,6 +110,14 @@ const Tasks = () => {
     setContacts(newContacts);
   };
 
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.example.com/options')
+      .then(response => response.json())
+      .then(data => setUsers(data));
+  }, []);
+
   return (
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
@@ -145,37 +153,61 @@ const Tasks = () => {
         </table>
       </form>
 
-      <h2>Add a Contact</h2>
+      <h2>Add a Task</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
+          className="form-control"
           type="text"
-          name="fullName"
+          name="taskName"
           required="required"
-          placeholder="Enter a name..."
+          placeholder="Enter a Task Name..."
           onChange={handleAddFormChange}
         />
         <input
+          className="form-control"
           type="text"
-          name="address"
+          name="description"
           required="required"
-          placeholder="Enter an addres..."
+          placeholder="Enter a Description of the Task..."
           onChange={handleAddFormChange}
         />
         <input
+          className="form-control"
           type="text"
-          name="phoneNumber"
+          name="date"
           required="required"
-          placeholder="Enter a phone number..."
+          pattern= "([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))"
+          placeholder="Enter Date of the Task (YYYY-MM-DD)..."
           onChange={handleAddFormChange}
         />
         <input
-          type="email"
-          name="email"
+          className="form-control"
+          type="text"
+          name="startTime"
           required="required"
-          placeholder="Enter an email..."
+          pattern= "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+          placeholder="Enter the Start Time (HH:MM)..."
           onChange={handleAddFormChange}
+        />
+        <input
+          className="form-control"
+          type="text"
+          name="endTime"
+          required="required"
+          pattern= "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+          placeholder="Enter the End Time (HH:MM)..."
+          onChange={handleAddFormChange}
+        />
+        <Select
+          isMulti
+          name="users"
+          options={users}
+          className="basic-multi-select"
+          placeholder="Select the Volunteers Needed"
+          classNamePrefix="select"
         />
         <button type="submit">Add</button>
+        
       </form>
     </div>
   );
