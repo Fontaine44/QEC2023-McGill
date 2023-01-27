@@ -206,7 +206,7 @@ const Tasks = () => {
           placeholder="Select the Volunteers Needed"
           classNamePrefix="select"
         />
-        <button type="submit">Add</button>
+        <button className="btn btn-danger" type="submit">Add</button>
         
       </form>
     </div>
