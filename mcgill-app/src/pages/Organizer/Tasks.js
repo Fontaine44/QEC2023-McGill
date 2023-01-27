@@ -23,17 +23,18 @@ const Tasks2 = () => {
       })
     };
     fetch('http://127.0.0.1:5000/tasks/create', requestOptions)
+    e.target.reset();
   }
     
 
   return (
     <div className="container h-100 mt-5">
     <div class="row h-100">
-    <div class="col-5 ">
+    <div class="col-6 ">
     <h2>Add a Task</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
-          className="form-control"
+          className="form-control mb-3 mt-3"
           type="text"
           name="name"
           required="required"
@@ -41,7 +42,7 @@ const Tasks2 = () => {
           onChange={(e)=> setName(e.target.value)}
         />
         <input
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           name="description"
           required="required"
@@ -49,7 +50,7 @@ const Tasks2 = () => {
           onChange={(e)=> setDescription(e.target.value)}
         />
         <input
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           name="date"
           required="required"
@@ -58,7 +59,7 @@ const Tasks2 = () => {
           onChange={(e)=> setDate(e.target.value)}
         />
         <input
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           name="startTime"
           required="required"
@@ -67,7 +68,7 @@ const Tasks2 = () => {
           onChange={(e)=> setStartTime(e.target.value)}
         />
         <input
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           name="endTime"
           required="required"
@@ -76,18 +77,20 @@ const Tasks2 = () => {
           onChange={(e)=> setEndTime(e.target.value)}
         />
         <input
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           name="userId"
           required="required"
-          placeholder="Enter a valid userId"
+          placeholder="Enter a Valid UserId"
           onChange={(e)=> setUserId(e.target.value)}
         />
         <button className="btn btn-danger" type="submit">Add</button>
         
       </form>
       </div>
-      <div class="col-7 h-100">
+      <div class="col-1 h-100">
+      </div>
+      <div class="col-5 h-100">
       <TaskGrid />
       </div>
       </div>

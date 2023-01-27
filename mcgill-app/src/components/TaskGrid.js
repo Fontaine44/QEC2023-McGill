@@ -13,7 +13,7 @@ const TaskGrid = () => {
 
  // Each Column Definition results in one Column.
  const [columnDefs, setColumnDefs] = useState([
-   {field: 'id'},
+   {field: 'id', headerName: 'Valid UserId'},
  ]);
 
  // DefaultColDef sets props common to all Columns

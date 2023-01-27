@@ -13,10 +13,10 @@ const LFGrid = () => {
 
  // Each Column Definition results in one Column.
  const [columnDefs, setColumnDefs] = useState([
-   {field: 'name', filter: true},
-   {field: 'description', minWidth: 200},
-   {field: 'find_hour'},
-   {field: 'type'},
+   {field: 'name', filter: true, minWidth: 200},
+   {field: 'description', resizable: true, minWidth: 200},
+   {field: 'find_hour', headerName: "Find time"},
+   {field: 'type', headerName: "LOST/FOUND"},
  ]);
 
  // DefaultColDef sets props common to all Columns
